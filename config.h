@@ -1,0 +1,13 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+//#define DEBUG 1
+
+#define MIN_INTERVAL_SECONDS 10
+#define MAX_WATERING_DURATION 1200
+
+#define WATER_CHECK_ENABLE_PIN 3
+#define WATER_CHECK_PIN 2
+#define PUMP_PIN 4
+
+#endif

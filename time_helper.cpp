@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include <DS1302.h>
 
-const int kCePin   = 7;  // Chip Enable
+const int kCePin   = 9;  // Chip Enable
 const int kIoPin   = 8;  // Input/Output
-const int kSclkPin = 9;  // Serial Clock
+const int kSclkPin = 7;  // Serial Clock
 
 
 // Create a DS1302 object.
@@ -52,6 +52,9 @@ byte setCurrentTimeInSeconds(unsigned long timestampSeconds) {
   Serial.println("\nMinutes  " + String(tminute));
   Serial.println("\nSeconds  " + String(tseconds));
   #endif
+
+  rtc.writeProtect(false);
+  rtc.halt(false);
   
   Time result(tyear, tmonth, tday, thour, tminute, tseconds, Time::kSunday); 
   rtc.time(result);

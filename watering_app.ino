@@ -45,21 +45,22 @@ void loop() {
   
   tryToExecuteOneTimeScript();
   
-  for (int i = 0; i < SCRIPTS_COUNT; i++) {
-    WateringProgram * p = &(wateringScripts[i]);
-    
-    if (needToExecute(*p)) {
-      byte result = tryToExecuteProgram(p);
-      isWaterTankEmpty = result == -1 or result == 0;
-    }
-  }
+//  for (int i = 0; i < SCRIPTS_COUNT; i++) {
+//    WateringProgram * p = &(wateringScripts[i]);
+//    
+//    if (needToExecute(p)) {
+//      byte result = tryToExecuteProgram(p);
+//      isWaterTankEmpty = result == -1 or result == 0;
+//    }
+//  }
 }
 
 void tryToExecuteOneTimeScript() {
-  if (needToExecute(oneTimeScript)) {
+  if (needToExecute(&oneTimeScript)) {
     byte result = tryToExecuteProgram(&oneTimeScript);
     isWaterTankEmpty = result == -1 or result == 0;
     oneTimeScript.enabled = false;
+    oneTimeScript.durationSeconds = 0;
   }
 }
 

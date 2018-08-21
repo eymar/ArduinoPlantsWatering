@@ -59,16 +59,16 @@ byte editWateringProgram(WateringProgram *p, unsigned long intervalSeconds, unsi
         return 1;
 }
 
-bool needToExecute(WateringProgram script) {
-  if (!script.enabled || script.durationSeconds < 1) {
+bool needToExecute(WateringProgram * script) {
+  if (!script->enabled || script->durationSeconds < 1) {
     return false;
   }
 
-  return currentTimeSeconds() > script.nextWateringTime;
+  return currentTimeSeconds() > script->nextWateringTime;
 }
 
 byte tryToExecuteProgram(WateringProgram * script) {
-  if (!needToExecute(*script)) {
+  if (!needToExecute(script)) {
     return -2; // Этот скрипт выключен либо его время еще не пришло
   }
   
@@ -78,11 +78,14 @@ byte tryToExecuteProgram(WateringProgram * script) {
 
   turnOnOffThePump(true);
   bool runOutOfWater = false;
-  
+
+  int delayMs = 500;
   int start = currentTimeSeconds();
   int t = start;
+  
   while (t - start < script -> durationSeconds) {
-      delay(1000);
+      delay(delayMs);
+      
       runOutOfWater = !isWaterTankNotEmpty();
       
       if (runOutOfWater) {

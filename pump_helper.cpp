@@ -10,7 +10,7 @@ void setupPumpPins() {
 
 bool isWaterTankNotEmpty() {
   digitalWrite(WATER_CHECK_ENABLE_PIN, HIGH);
-  delay(200);
+  delay(50);
   
   bool hasWater = digitalRead(WATER_CHECK_PIN) == HIGH; // pulld-down resistor
   digitalWrite(WATER_CHECK_ENABLE_PIN, LOW);

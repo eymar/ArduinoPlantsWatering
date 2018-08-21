@@ -31,7 +31,7 @@ void initializeWateringScripts();
 void saveScript(int pos, WateringProgram script);
 byte editWateringProgram(WateringProgram *p, unsigned long intervalSeconds, unsigned long nextWateringTime,
       unsigned short durationSeconds, byte purposeId, bool enabled);
-bool needToExecute(WateringProgram script);
+bool needToExecute(WateringProgram * script);
 byte tryToExecuteProgram(WateringProgram * script);
 
 void printScript(WateringProgram script);
